@@ -133,6 +133,11 @@ Kingbar สูตรบาร์ที่ดีที่สุดและแม
       <img style="height: 55px" data-toggle="dropdown" src="{{ url('/assets/ic_menu-57f347d85a6b34c11226f70ef0f23e445706541f96c09ae47ce9fb0d2571058e.png') }}">
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" rel="nofollow" data-method="delete" href="{{ url('/logout') }}">ออกจากระบบ</a>
+        @if(Auth::user()->roles[0]['name'] === 'superadmin' || Auth::user()->roles[0]['name'] === 'admin')
+                <a class="dropdown-item" href="{{ url('admin/dashboard') }}" >
+                  เข้าสู่หลังบ้าน
+                </a>
+                @endif
       </div>
     </div>
   </div>

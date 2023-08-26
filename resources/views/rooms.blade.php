@@ -89,6 +89,11 @@ Kingbar สูตรบาร์ที่ดีที่สุดและแม
           @if($game->room_image3)
           <a href="{{ url('rooms?casino='.$game->game_name_short.'&formula=3') }}" class="dropdown-item">สูตร เค้าไพ่ C</a>
           @endif
+          @if(Auth::user()->roles[0]['name'] === 'superadmin' || Auth::user()->roles[0]['name'] === 'admin')
+                <a class="dropdown-item" href="{{ url('admin/dashboard') }}" >
+                  เข้าสู่หลังบ้าน
+                </a>
+                @endif
         </div>
       </div>
     </div>
