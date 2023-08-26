@@ -2,7 +2,7 @@
 
 
 @section('title')
-Kingbar สูตรบาร์ที่ดีที่สุดและแม่นยำที่สุดในไทย อันดับ 1
+wowbaccarat สูตรบาร์ที่ดีที่สุดและแม่นยำที่สุดในไทย อันดับ 1
 @stop
 
 @section('stylesheet')
