@@ -80,9 +80,15 @@ Kingbar สูตรบาร์ที่ดีที่สุดและแม
       <div class="dropdown">
         <img style="height: 55px" data-toggle="dropdown" src="{{ url('/assets/ic_menu-57f347d85a6b34c11226f70ef0f23e445706541f96c09ae47ce9fb0d2571058e.png') }}">
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          @if($game->room_image)
           <a href="{{ url('rooms?casino='.$game->game_name_short.'&formula=1') }}" class="dropdown-item">สูตร เค้าไพ่ A</a>
+          @endif
+          @if($game->room_image2)
           <a href="{{ url('rooms?casino='.$game->game_name_short.'&formula=2') }}" class="dropdown-item">สูตร เค้าไพ่ B</a>
+          @endif
+          @if($game->room_image3)
           <a href="{{ url('rooms?casino='.$game->game_name_short.'&formula=3') }}" class="dropdown-item">สูตร เค้าไพ่ C</a>
+          @endif
         </div>
       </div>
     </div>

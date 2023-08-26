@@ -192,9 +192,9 @@ Kingbar สูตรบาร์ที่ดีที่สุดและแม
   <div class="row justify-content-center mr-1">
   <div class="box-game justify-content-center text-center">
   <div style="font-size: 10px">
-  sexy 02
+  {{$game->game_name_short}} {{$objs->room}}
   </div>
-  <div id="round-count" style="font-size: 10px; margin-top: 20px">ครั้งที่ 3</div>
+  <div id="round-count" style="font-size: 10px; margin-top: 20px">ครั้งที่ 1</div>
   <div id="round" style="font-size: 10px; margin-top: 20px">รอบที่ 1</div>
   </div>
   </div>

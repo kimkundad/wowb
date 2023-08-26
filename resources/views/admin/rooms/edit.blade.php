@@ -153,7 +153,7 @@
 
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">ชื่อห้อง</label>
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">ชื่อห้อง </label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row fv-plugins-icon-container">
@@ -167,7 +167,7 @@
                                     <!--end::Col-->
                                 </div>
 
-                                <div class="row mb-6">
+                                <div class="row mb-6 " style="display:none">
                                     <!--begin::Label-->
                                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">อัตราชนะ (ไม่ต้องปรับก็ได้ เปลี่ยน auto ทุก 1 นาที)</label>
                                     <!--end::Label-->
@@ -181,7 +181,7 @@
 
 
                                 @if($game->cat_id == 1)
-                                <div class="row mb-0">
+                                <div class="row mb-0" style="display:none">
                                     <!--begin::Label-->
                                     <label class="col-lg-4 col-form-label fw-semibold fs-6">Hot Game</label>
                                     <!--begin::Label-->

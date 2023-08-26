@@ -93,8 +93,14 @@ class GameController extends Controller
             'game_name_short' => 'required',
             'image' => 'required',
             'image2' => 'required',
-            'image3' => 'required'
            ]);
+
+           $status = 0;
+            if(isset($request['status'])){
+                if($request['status'] == 1){
+                    $status = 1;
+                }
+            }
            
            $image = $request->file('image');
            $image2 = $request->file('image2');
@@ -109,22 +115,6 @@ class GameController extends Controller
             $img->stream();
             Storage::disk('do_spaces')->put('game/game/'.$image->hashName(), $img, 'public');
 
-            $input['imagename'] = time().'.'.$image3->getClientOriginalExtension();
-            $img3 = Image::make($image3->getRealPath());
-            $img3->resize(400, 400, function ($constraint3) {
-            $constraint3->aspectRatio();
-            });
-            $img3->stream();
-            Storage::disk('do_spaces')->put('game/room/'.$image3->hashName(), $img3, 'public');
-
-            $input['imagename'] = time().'.'.$image4->getClientOriginalExtension();
-            $img4 = Image::make($image4->getRealPath());
-            $img4->resize(400, 400, function ($constraint4) {
-            $constraint4->aspectRatio();
-            });
-            $img4->stream();
-            Storage::disk('do_spaces')->put('game/room/'.$image4->hashName(), $img4, 'public');
-
             $input['imagename'] = time().'.'.$image2->getClientOriginalExtension();
             $img2 = Image::make($image2->getRealPath());
             $img2->resize(400, 400, function ($constraint2) {
@@ -134,14 +124,7 @@ class GameController extends Controller
             Storage::disk('do_spaces')->put('game/room/'.$image2->hashName(), $img2, 'public');
 
 
-        $status = 0;
-        if(isset($request['status'])){
-            if($request['status'] == 1){
-                $status = 1;
-            }
-        }
-     
-           $objs = new game();
+            $objs = new game();
            $objs->game_name = $request['game_name'];
            $objs->game_name_short = $request['game_name_short'];
            $objs->cat_id = $request['cat_id'];
@@ -149,9 +132,46 @@ class GameController extends Controller
            $objs->status = $status;
            $objs->sort = $request['sort'];
            $objs->room_image = $image2->hashName();
-           $objs->room_image2 = $image3->hashName();
-           $objs->room_image3 = $image4->hashName();
            $objs->save();
+           $objs->id;
+           $id = $objs->id;
+
+            if($image3 !== null) {
+
+                $input['imagename'] = time().'.'.$image3->getClientOriginalExtension();
+                $img3 = Image::make($image3->getRealPath());
+                $img3->resize(400, 400, function ($constraint3) {
+                $constraint3->aspectRatio();
+                });
+                $img3->stream();
+                Storage::disk('do_spaces')->put('game/room/'.$image3->hashName(), $img3, 'public');
+
+
+                $objs3 = game::find($id);
+                $objs3->room_image2 = $image3->hashName();
+                $objs3->save();
+
+                }
+
+            
+
+
+            if($image4 !== null) {
+
+                $input['imagename'] = time().'.'.$image4->getClientOriginalExtension();
+                $img4 = Image::make($image4->getRealPath());
+                $img4->resize(400, 400, function ($constraint4) {
+                $constraint4->aspectRatio();
+                });
+                $img4->stream();
+                Storage::disk('do_spaces')->put('game/room/'.$image4->hashName(), $img4, 'public');
+
+                $objs3 = game::find($id);
+                $objs3->room_image3 = $image4->hashName();
+                $objs3->save();
+                
+            }     
+           
 
 
            return redirect(url('admin/games'))->with('add_success','คุณทำการเพิ่มอสังหา สำเร็จ');
@@ -328,12 +348,12 @@ class GameController extends Controller
 
           if($image4 !== NULL){
 
-
-            $image4 = Storage::disk('do_spaces');
-            $image4->delete('game/room/' . $img->room_image3, 'public');
+           //  dd($image4->getRealPath());
+            $storage4 = Storage::disk('do_spaces');
+            $storage4->delete('game/room/' . $img->room_image3, 'public');
   
             $input['imagename'] = time().'.'.$image4->getClientOriginalExtension();
-  
+ 
             $img4 = Image::make($image4->getRealPath());
             $img4->resize(400, 400, function ($constraint4) {
             $constraint4->aspectRatio();
